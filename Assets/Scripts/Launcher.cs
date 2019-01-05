@@ -8,8 +8,8 @@ public class Launcher : MonoBehaviour {
     public GameObject potionPrefab;
     public Slider powerBar;
     public GameObject trajectoryDotPrefab;
-    public float forceMultiplyer = 40f;
-    public float trajectoryModifier = .0165f;
+    private const float forceMultiplyer = 40f;
+    private const float trajectoryModifier = .0165f;
     public int dotNum = 8;
 
     private float force = 1f;
@@ -60,6 +60,9 @@ public class Launcher : MonoBehaviour {
     {
         GameObject projectile = Instantiate(potionPrefab, this.transform.position, this.transform.rotation);        // spawn a potionPrefab
         projectile.GetComponent<Rigidbody2D>().AddForce((angle * (force * -1)), ForceMode2D.Force);         // give the projectile an appropriate force at the appropriate angle
+
+        float torque = Random.Range(-3f, 3f);
+        projectile.GetComponent<Rigidbody2D>().AddTorque(torque);           // add a little random spin (looks nice!)
     }
 
     private void CalculateProjectileVector()

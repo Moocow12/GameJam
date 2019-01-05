@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour {
         {
             print("Enemy Spawned");
             //print("WaveCounter: " + waveCounter + ", enemyWaves.Length: " + enemyWaves.Length);
-            Instantiate(currentWave.enemies[currentWave.GetEnemyCounter()]);        // instantiate the current enemy on the current wave
+            Instantiate(currentWave.enemies[currentWave.GetEnemyCounter()], this.transform.position, this.transform.rotation);        // instantiate the current enemy on the current wave
             currentWave.SetSpawnCD(currentWave.spawnInterval);      // reset the spawn interval
             currentWave.SetEnemyCounter(currentWave.GetEnemyCounter() + 1);         // increment the enemy counter of the current wave
         }

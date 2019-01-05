@@ -7,12 +7,17 @@ public class Enemy : MonoBehaviour {
     public int health = 100;
     public float moveSpeed = 10f;
     public int damage = 5;
+    public bool isFlying = false;
 
-    private Rigidbody2D rbody;
+    protected Rigidbody2D rbody;
 
 	// Use this for initialization
 	void Start () {
         rbody = this.GetComponent<Rigidbody2D>();
+        if (isFlying == true)
+        {
+            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y + 1);
+        }
 	}
 	
 	// Update is called once per frame
@@ -20,7 +25,7 @@ public class Enemy : MonoBehaviour {
         Movement();
 	}
 
-    private void Movement()
+    protected void Movement()
     {
         rbody.AddForce(Vector2.left * moveSpeed);
     }
