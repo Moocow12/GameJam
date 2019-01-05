@@ -1,12 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class Slot {
+public class Slot : MonoBehaviour{
 
     public List<Item> items;
-    
 
+    public Image _icon;
+    public TextMeshProUGUI _text;
+
+
+    private void Start()
+    {
+        UpdateCount();
+        UpdateIcon();
+    }
 
     /// <summary>
     /// Adds the desired to the inventory, Check to see if the inventory is full before using this method or you could lose the item.
@@ -25,6 +35,7 @@ public class Slot {
         {
             items.Add(item);
         }
+        UpdateIcon();
     }
 
     /// <summary>
@@ -36,6 +47,7 @@ public class Slot {
         {
             items.RemoveAt(0);
         }
+        UpdateIcon();
     }
 
     /// <summary>
@@ -70,9 +82,44 @@ public class Slot {
         return true;
     }
 
+    /// <summary>
+    /// Displays the current count of the item.
+    /// </summary>
+    /// <returns></returns>
     public int CurrentCount()
     {
         return items.Count;
     }
 
+
+    /// <summary>
+    /// Changes the icon within the inventory to what item is or is not in the slot.
+    /// </summary>
+    public void UpdateIcon()
+    {
+        if(!IsEmpty())
+        {
+            _icon.sprite = items[0].inventoryIcon;
+        }
+        else
+        {
+            _icon.sprite = null;
+        }
+    }
+
+
+    /// <summary>
+    /// Changes the Text within the inventory to how many items are left if the number is greater than 0
+    /// </summary>
+    public void UpdateCount()
+    {
+        if(!IsEmpty())
+        {
+            _text.text = CurrentCount().ToString();
+        }
+        else
+        {
+            _text.text = "";
+        }
+    }
 }

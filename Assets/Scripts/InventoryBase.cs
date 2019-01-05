@@ -33,10 +33,12 @@ public class InventoryBase : MonoBehaviour {
 
     public void Initialize()
     {
-        foreach(Slot s in slots)
+        for (int i = 0; i < numberOfSlots; i++)
         {
+
+            //Adds the Prefab item to the 
             GameObject obj = Instantiate(slotPrefab, transform);
-            
+            slots[i] = obj.GetComponent<Slot>();
         }
 
     }
