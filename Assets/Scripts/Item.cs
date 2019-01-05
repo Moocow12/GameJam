@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour {
+public class Item : ScriptableObject {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public int stackSize = 1;
+    public Sprite inventoryIcon;
+    public Sprite combatImage;
+
+    
+
 }
