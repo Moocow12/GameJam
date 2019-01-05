@@ -63,7 +63,6 @@ public class InventoryBase : MonoBehaviour {
             if(!s.IsFull() && s.CurrentItemName() == item.name)
             {
                 s.AddItem(item);
-                Debug.Log("Item Added");
                 return true;
                 
                 
@@ -71,7 +70,6 @@ public class InventoryBase : MonoBehaviour {
             else if(s.IsEmpty())
             {
                 s.AddItem(item);
-                Debug.Log("Item Added");
                 return true;
             }
                      

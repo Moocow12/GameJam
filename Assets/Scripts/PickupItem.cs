@@ -21,7 +21,6 @@ public class PickupItem : MonoBehaviour {
     /// </summary>
     private void OnMouseDown()
     {
-        Debug.Log("Clicking DroppedItem");
         if(manager.AddItem(item))
         {
             //destroys the item if it is successfully added.
