@@ -9,8 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dbc44083417a7f46a7d41ca999b665c, type: 3}
-  m_Name: TestItem
+  m_Name: TestItemRed
   m_EditorClassIdentifier: 
-  stackSize: 1
-  inventoryIcon: {fileID: 0}
+  stackSize: 3
+  inventoryIcon: {fileID: 21300000, guid: 7e5e55ad1977f8c4fac359c7b88776e8, type: 3}
   combatImage: {fileID: 0}
+  inventoryType: 0

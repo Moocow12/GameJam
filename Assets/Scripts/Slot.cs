@@ -36,8 +36,17 @@ public class Slot : MonoBehaviour{
             items.Add(item);
         }
         UpdateIcon();
+        UpdateCount();
     }
 
+    public string CurrentItemName()
+    {
+        if(!IsEmpty())
+        {
+            return items[0].name;
+        }
+        return "";
+    }
     /// <summary>
     /// Removes an item from the inventory if possible
     /// </summary>
@@ -48,6 +57,7 @@ public class Slot : MonoBehaviour{
             items.RemoveAt(0);
         }
         UpdateIcon();
+        UpdateCount();
     }
 
     /// <summary>

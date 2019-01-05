@@ -10,6 +10,6 @@ public class Item : ScriptableObject {
     public Sprite inventoryIcon;
     public Sprite combatImage;
 
-    
+    public InventoryType inventoryType;
 
 }

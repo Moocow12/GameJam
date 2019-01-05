@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Add Addition types for each inventory that you want in the game.
+/// </summary>
+public enum InventoryType
+{
+    CraftingMaterials,
+    Potions
+
+}
+
+
+
+
 public class InventoryBase : MonoBehaviour {
 
     //LocalVariables
@@ -11,7 +24,7 @@ public class InventoryBase : MonoBehaviour {
 
     private Slot[] slots;
     public int numberOfSlots;
-
+    public InventoryType type;
 
     public GameObject slotPrefab;
 
@@ -41,5 +54,28 @@ public class InventoryBase : MonoBehaviour {
             slots[i] = obj.GetComponent<Slot>();
         }
 
+    }
+
+    public bool AddItem(Item item)
+    {
+        foreach(Slot s in slots)
+        {
+            if(!s.IsFull() && s.CurrentItemName() == item.name)
+            {
+                s.AddItem(item);
+                Debug.Log("Item Added");
+                return true;
+                
+                
+            }
+            else if(s.IsEmpty())
+            {
+                s.AddItem(item);
+                Debug.Log("Item Added");
+                return true;
+            }
+                     
+        }
+        return false;
     }
 }
