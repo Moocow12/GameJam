@@ -27,6 +27,8 @@ public class MessageDisplay : MonoBehaviour {
     {
         Singleton();
     }
+
+   
     private void Start()
     {
         _text = GetComponent<TextMeshProUGUI>();
@@ -35,7 +37,11 @@ public class MessageDisplay : MonoBehaviour {
 
 
 
-
+    /// <summary>
+    /// Displays the message on the screen for a designated amount of time.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="timeDisplayed"></param>
     public void DisplayMessage(string message, float timeDisplayed)
     {
         _text.text = message;
@@ -43,7 +49,11 @@ public class MessageDisplay : MonoBehaviour {
         StartCoroutine(DisplayMessage(timeDisplayed));
     }
 
-
+    /// <summary>
+    /// Is the time counter for the message.
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
     IEnumerator DisplayMessage(float time)
     {
         _text.enabled = true;
@@ -51,4 +61,17 @@ public class MessageDisplay : MonoBehaviour {
         _text.enabled = false;
     }
 
+    /// <summary>
+    /// Displays the message for the alloted time if in the Unity editor.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="timeDisplayed"></param>
+    public void EditorMessage(string message, float timeDisplayed)
+    {
+        if(Application.isEditor)
+        {
+            DisplayMessage(message, timeDisplayed);
+        }
+        
+    }
 }
