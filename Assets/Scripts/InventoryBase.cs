@@ -22,7 +22,7 @@ public class InventoryBase : MonoBehaviour {
 
 
 
-    private Slot[] slots;
+    public Slot[] slots;
     public int numberOfSlots;
     public InventoryType type;
 
@@ -35,7 +35,6 @@ public class InventoryBase : MonoBehaviour {
         _rect = GetComponent<RectTransform>();
         _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Camera.main.pixelWidth);
         _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Camera.main.pixelHeight);
-        slots = new Slot[numberOfSlots];
         Initialize();
 	}
 	
@@ -44,8 +43,9 @@ public class InventoryBase : MonoBehaviour {
 		
 	}
 
-    public void Initialize()
+    public virtual void Initialize()
     {
+        slots = new Slot[numberOfSlots];
         for (int i = 0; i < numberOfSlots; i++)
         {
 

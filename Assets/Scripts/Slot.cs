@@ -11,8 +11,14 @@ public class Slot : MonoBehaviour{
     public Image _icon;
     public TextMeshProUGUI _text;
 
-
+    Item itemTypeTester = null;
     private void Start()
+    {
+        UpdateCount();
+        UpdateIcon();
+    }
+
+    private void Update()
     {
         UpdateCount();
         UpdateIcon();
@@ -107,29 +113,40 @@ public class Slot : MonoBehaviour{
     /// </summary>
     public void UpdateIcon()
     {
-        if(!IsEmpty())
+        if (_icon != null)
         {
-            _icon.sprite = items[0].inventoryIcon;
-        }
-        else
-        {
-            _icon.sprite = null;
+            if (!IsEmpty())
+            {
+                _icon.sprite = items[0].inventoryIcon;
+            }
+            else
+            {
+                _icon.sprite = null;
+            }
         }
     }
 
-
+    public void ClearSlot()
+    {
+        items.Clear();
+        UpdateIcon();
+        UpdateCount();
+    }
     /// <summary>
     /// Changes the Text within the inventory to how many items are left if the number is greater than 0
     /// </summary>
     public void UpdateCount()
     {
-        if(!IsEmpty())
+        if (_text != null)
         {
-            _text.text = CurrentCount().ToString();
-        }
-        else
-        {
-            _text.text = "";
+            if (!IsEmpty())
+            {
+                _text.text = CurrentCount().ToString();
+            }
+            else
+            {
+                _text.text = "";
+            }
         }
     }
 }
