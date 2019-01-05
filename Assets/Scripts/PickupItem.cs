@@ -22,6 +22,7 @@ public class PickupItem : MonoBehaviour {
         if(manager.AddItem(item))
         {
             //destroys the item if it is successfully added.
+            MessageDisplay.Instance.DisplayMessage(item.name + " added to inventory.", 2f);
             Destroy(gameObject);
         }
         

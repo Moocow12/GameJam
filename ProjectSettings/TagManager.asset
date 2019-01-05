@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Units
+    uniqueID: 296014461
+    locked: 0
+  - name: Projectiles
+    uniqueID: 2131623183
+    locked: 0
+  - name: InGameHUD
+    uniqueID: 3050356711
+    locked: 0
+  - name: MessageDisplay
+    uniqueID: 564218635
+    locked: 0
+  - name: PauseMenu
+    uniqueID: 2901351779
+    locked: 0
