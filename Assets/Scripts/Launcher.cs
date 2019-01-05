@@ -6,26 +6,55 @@ using UnityEngine;
 public class Launcher : MonoBehaviour {
 
     public GameObject potionPrefab;
-    public float forceMultiplyer = 1f;
     public Slider powerBar;
+    public GameObject trajectoryDotPrefab;
+    public float forceMultiplyer = 40f;
+    public float trajectoryModifier = .0165f;
+    public int dotNum = 8;
+
     private float force = 1f;
     private Vector3 angle;
+    List<GameObject> dots = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) == true)         // if we have released the left click this frame...
+        if (Input.GetKeyUp(KeyCode.Mouse0))         // if we have released the left click this frame...
         {
             LaunchProjectile();         // call LaunchProjectile()
+            ClearTrajectory();
         }
-
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            CreateTrajectory(dotNum);
+        }
+        
         CalculateProjectileVector();        // call CaluculateProjectileVector()
 	}
+
+    private void CreateTrajectory(int dotCount)
+    {
+        ClearTrajectory();
+        for (int i = 0; i < dotCount; i++)
+        {
+            GameObject trajectoryDot = Instantiate(trajectoryDotPrefab);
+            dots.Add(trajectoryDot);
+            trajectoryDot.transform.position = CalculatePosition(.2f * i);
+        }
+    }
+
+    private void ClearTrajectory()
+    {
+        foreach (GameObject dot in dots)
+        {
+            Destroy(dot.gameObject);
+        }
+    }
 
     private void LaunchProjectile()
     {
@@ -46,5 +75,10 @@ public class Launcher : MonoBehaviour {
 
         angle = position;
         //print(angle);
+    }
+
+    private Vector3 CalculatePosition(float elapsedTime)
+    {
+        return Physics.gravity * elapsedTime * elapsedTime * .5f + (angle * (force * -trajectoryModifier)) * elapsedTime + this.transform.position;
     }
 }

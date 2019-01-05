@@ -679,8 +679,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionPrefab: {fileID: 1200897594588240, guid: 75af91066b823304e995d26a12614323,
     type: 2}
-  forceMultiplyer: 40
   powerBar: {fileID: 77191608}
+  trajectoryDotPrefab: {fileID: 1312942179864214, guid: 674fa8ba9a3ee6b4da0df9cfdd16bab7,
+    type: 2}
+  forceMultiplyer: 40
+  trajectoryModifier: 0.0165
+  dotNum: 9
 --- !u!1 &383412514
 GameObject:
   m_ObjectHideFlags: 0
