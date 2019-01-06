@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class Slot : MonoBehaviour{
+public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
+{
 
     public List<Item> items;
 
@@ -12,8 +14,12 @@ public class Slot : MonoBehaviour{
     public TextMeshProUGUI _text;
 
     Item itemTypeTester = null;
+
+    Inventory inventoryParent;
+
     private void Start()
     {
+        inventoryParent = GetComponentInParent<Inventory>();
         UpdateCount();
         UpdateIcon();
     }
@@ -22,6 +28,8 @@ public class Slot : MonoBehaviour{
     {
         UpdateCount();
         UpdateIcon();
+
+
     }
 
     /// <summary>
@@ -30,9 +38,9 @@ public class Slot : MonoBehaviour{
     /// <param name="item"></param>
     public void AddItem(Item item)
     {
-        if(items.Count > 0)
+        if (items.Count > 0)
         {
-            if(items[0].stackSize > items.Count)
+            if (items[0].stackSize > items.Count)
             {
                 items.Add(item);
             }
@@ -47,7 +55,7 @@ public class Slot : MonoBehaviour{
 
     public string CurrentItemName()
     {
-        if(!IsEmpty())
+        if (!IsEmpty())
         {
             return items[0].name;
         }
@@ -58,7 +66,7 @@ public class Slot : MonoBehaviour{
     /// </summary>
     public void RemoveItem()
     {
-        if(!IsEmpty())
+        if (!IsEmpty())
         {
             items.RemoveAt(0);
         }
@@ -72,7 +80,7 @@ public class Slot : MonoBehaviour{
     /// <returns></returns>
     public bool IsEmpty()
     {
-        if(items.Count ==0)
+        if (items.Count == 0)
         {
             return true;
         }
@@ -94,7 +102,7 @@ public class Slot : MonoBehaviour{
         {
             return false;
         }
-        
+
         return true;
     }
 
@@ -148,5 +156,51 @@ public class Slot : MonoBehaviour{
                 _text.text = "";
             }
         }
+    }
+
+
+
+  
+
+    public void SlotClick()
+    {
+        InventoryManager mng = FindObjectOfType<InventoryManager>();
+        //mng.SlotClick(items,SlotType());
+        mng.SlotClick(this);
+    }
+
+    public InventoryType SlotType()
+    {
+        return inventoryParent.type;
+    }
+
+
+    Coroutine mouseHolder;
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(SlotType() == InventoryType.Crafter)
+        {
+            mouseHolder = StartCoroutine(WaitForClick());
+            Debug.Log("Entering");
+        }
+        
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(SlotType() == InventoryType.Crafter)
+        {
+            StopCoroutine(mouseHolder);
+            Debug.Log("Exiting");
+        }
+       
+    }
+
+
+    IEnumerator WaitForClick()
+    {
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
+        items = new List<Item>();
+
     }
 }

@@ -12,4 +12,9 @@ public class Item : ScriptableObject {
 
     public InventoryType inventoryType;
 
+    public virtual bool Use()
+    {
+       
+        return true;
+    }
 }

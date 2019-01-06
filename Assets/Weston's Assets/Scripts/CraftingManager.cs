@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class CraftingManager : MonoBehaviour {
 
-    CraftingInventory _inv;
+    Inventory _inv;
     public List<Recipe> recipes;
     public bool found1 = false, found2 = false, found3= false;
 	// Use this for initialization
 	void Start () {
-        _inv = FindObjectOfType<CraftingInventory>();
+        Inventory [] inventories=  FindObjectsOfType<Inventory>();
+        foreach(Inventory i in inventories)
+        {
+            if(i.type == InventoryType.Crafter)
+            {
+                _inv = i;
+            }
+        }
 	}
 	
 	// Update is called once per frame
@@ -45,6 +52,7 @@ public class CraftingManager : MonoBehaviour {
                 {
                     found2 = true;
                 }
+
                 else if (!found3 && recipe.ingredient3 == null && s.IsEmpty())
                 {
                     found3 = true;
@@ -82,4 +90,5 @@ public class CraftingManager : MonoBehaviour {
     {
         _inv.finishedItemSlot.ClearSlot();
     }
+
 }

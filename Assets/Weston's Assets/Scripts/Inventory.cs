@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 /// <summary>
 /// Add Addition types for each inventory that you want in the game.
 /// </summary>
 public enum InventoryType
 {
     CraftingMaterials,
-    Potions
+    Crafter,
+    DefensivePotion,
+    OffensivePotion
 
 }
 
 
 
 
-public class InventoryBase : MonoBehaviour {
+public class Inventory : MonoBehaviour {
 
     //LocalVariables
     RectTransform _rect;
@@ -27,14 +29,12 @@ public class InventoryBase : MonoBehaviour {
     public InventoryType type;
 
     public GameObject slotPrefab;
-
+    public Slot finishedItemSlot;
 
 
 	// Use this for initialization
 	void Start () {
-        _rect = GetComponent<RectTransform>();
-        _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Camera.main.pixelWidth);
-        _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Camera.main.pixelHeight);
+       
         Initialize();
 	}
 	
@@ -45,15 +45,20 @@ public class InventoryBase : MonoBehaviour {
 
     public virtual void Initialize()
     {
-        slots = new Slot[numberOfSlots];
-        for (int i = 0; i < numberOfSlots; i++)
+        if (type != InventoryType.Crafter)
         {
+            _rect = GetComponent<RectTransform>();
+            _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Camera.main.pixelWidth);
+            _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Camera.main.pixelHeight);
+            slots = new Slot[numberOfSlots];
+            for (int i = 0; i < numberOfSlots; i++)
+            {
 
-            //Adds the Prefab item to the 
-            GameObject obj = Instantiate(slotPrefab, transform);
-            slots[i] = obj.GetComponent<Slot>();
+                //Adds the Prefab item to the 
+                GameObject obj = Instantiate(slotPrefab, transform);
+                slots[i] = obj.GetComponent<Slot>();
+            }
         }
-
     }
 
     public bool AddItem(Item item)
@@ -76,4 +81,6 @@ public class InventoryBase : MonoBehaviour {
         }
         return false;
     }
+
+    
 }
