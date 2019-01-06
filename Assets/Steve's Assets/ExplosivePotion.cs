@@ -5,12 +5,9 @@ using UnityEngine;
 public class ExplosivePotion : Projectile {
 
     public float blastRadius = 1f;
-    private float explosionDuration = .1f;
-    private float explosionDurationCD;
 
 	// Use this for initialization
 	void Start () {
-        explosionDurationCD = explosionDuration;
         lifeTimeCD = lifeTime;
     }
 
@@ -27,8 +24,6 @@ public class ExplosivePotion : Projectile {
     {
         if (collision.gameObject.GetComponent<Enemy>())         // if we collided with an enemy...
         {
-            //collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);      // deal damage to it
-            lifeTimeCD = 0;
             Break();        // break on impact with an enemy
         }
 

@@ -90,4 +90,9 @@ public class Launcher : MonoBehaviour {
     {
         return Physics.gravity * elapsedTime * elapsedTime * .5f + (angle * (force * -trajectoryModifier)) * elapsedTime + this.transform.position;
     }
+
+    public void ChangeProjectile(GameObject prefab)
+    {
+        potionPrefab = prefab;
+    }
 }
