@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AcidicPotion : Projectile {
+public class AcidicPotion : BreakBehaviour {
 
     public AcidPool acid;
 
@@ -24,7 +24,7 @@ public class AcidicPotion : Projectile {
         }
     }
 
-    new private void Break()
+    public override void Break()
     {
         Instantiate(acid, transform.position, new Quaternion(0, 0, 0, 0));
         Destroy(gameObject);
