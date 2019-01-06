@@ -35,26 +35,69 @@ public class InventoryManager : MonoBehaviour {
         {
             secondSlot = s;
 
-            if(firstSlot.gameObject.name != "FinishedItem")
+            if(firstSlot.gameObject.name != "FinishedItem" && secondSlot.gameObject.name != "FinishedItem")
             {
                 if (firstSlot.SlotType() == secondSlot.SlotType())
                 {
                     SwitchSlots();
                 }
                 //Adds Crafting Materials into the crafter
-                if (firstSlot.SlotType() == InventoryType.CraftingMaterials && secondSlot.SlotType() == InventoryType.Crafter)
+                else if (firstSlot.SlotType() == InventoryType.CraftingMaterials && secondSlot.SlotType() == InventoryType.Crafter)
                 {
                     //Makes it equal to the same list
                     secondSlot.items = firstSlot.items;
                 }
                 //Exchanges crafting materials with the new material 
-                if (firstSlot.SlotType() == InventoryType.Crafter && secondSlot.SlotType() == InventoryType.CraftingMaterials)
+                else if (firstSlot.SlotType() == InventoryType.Crafter && secondSlot.SlotType() == InventoryType.CraftingMaterials)
                 {
                     if(firstSlot != secondSlot)
                     {
                         firstSlot.items = secondSlot.items;
                     }
                 }
+                //Adding to the offensive Potion Inventory
+                else if(!firstSlot.IsEmpty() && (firstSlot.SlotType() == InventoryType.Crafter || firstSlot.SlotType() == InventoryType.CraftingMaterials) && secondSlot.SlotType() == InventoryType.OffensivePotion)
+                {
+                    if(firstSlot.GetItemType() == ItemType.Offensive)
+                    {
+                        if(!secondSlot.IsEmpty())
+                        {
+                            if(firstSlot.items[0].name == secondSlot.items[0].name)
+                            {
+                                if(!secondSlot.IsFull())
+                                {
+                                    secondSlot.AddItem(firstSlot.items[0]);
+                                    firstSlot.RemoveItem();
+                                }
+                                else
+                                {
+                                    MessageDisplay.Instance.DisplayMessage("Cannot stack Items.", 2f);
+                                }
+                            }
+                            else
+                            {
+                                MessageDisplay.Instance.DisplayMessage("Cannot combine items.", 2f);
+                            }
+                        }
+                        else
+                        {
+                            SwitchSlots();
+                        }
+                    }
+                }
+
+                firstSlot = null;
+                secondSlot = null;
+            }
+            //Moving the crafted item from the finished slot to the empty inventory slot
+            //Can go in any inventory slot because it is a potion
+            else if(secondSlot.gameObject.name != "FinishedItem" && secondSlot.SlotType() != InventoryType.Crafter && !firstSlot.IsEmpty()) 
+            {
+                FindObjectOfType<CraftingManager>().TakingFinishedItem();
+                SwitchSlots();
+            }
+            else
+            {
                 firstSlot = null;
                 secondSlot = null;
             }
@@ -68,12 +111,45 @@ public class InventoryManager : MonoBehaviour {
 
     public void SwitchSlots()
     {
-        List<Item> temp;
-        temp = firstSlot.items;
-        firstSlot.items = secondSlot.items;
-        secondSlot.items = temp;
+        if (!firstSlot.IsEmpty() && !secondSlot.IsEmpty())
+        {
+            if(firstSlot.items[0].name == secondSlot.items[0].name)
+            {
+                TryStacking();
+            }
+        }
+        else
+        {
+            List<Item> temp;
+            temp = firstSlot.items;
+            firstSlot.items = secondSlot.items;
+            secondSlot.items = temp;
+        }
+        
+        firstSlot = null;
+        secondSlot = null;
     }
 
+    public void TryStacking()
+    {
+        int startingValue = firstSlot.items.Count;
+        for (int x = 0; x < startingValue; x++)
+        {
+            Item i = firstSlot.items[0];
+            //Checks to see if the destination slot is full
+            if (!secondSlot.IsFull())
+            {
+                secondSlot.AddItem(firstSlot.items[0]);
+                firstSlot.RemoveItem();
+            }
+            else
+            {
+                return;
+            }
+           
+        }
+       
+    }
 
     
 	// Update is called once per frame
@@ -82,28 +158,32 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 
-    public bool AddItem(Item item)
+    public bool AddItem(Item item, InventoryType preferedInventory)
     {
-        Debug.Log("Adding");
-        //Goes through each of the inventories within the game
+       //Checks the preferedInventory first to see if there is room when picking up the item
         foreach(Inventory inv in inventories)
         {
-            //Checks to see if the item can go in that inventory
-            if(inv.type == item.inventoryType)
+            if (inv.type == preferedInventory)
             {
-                //Checks to see if the addition was successful - not a full inventory / slot
                 if (inv.AddItem(item))
                 {
-                   MessageDisplay.Instance.EditorMessage(item.name + " added to inventory.", 2f);
                     
                     return true;
                 }
-                MessageDisplay.Instance.DisplayMessage("Inventory is Full", 2f);
-                return false;
             }
         }
+        //Goes through each of the inventories within the game
+        foreach(Inventory inv in inventories)
+        {
+            if(inv.type == InventoryType.CraftingMaterials)
+            {
+                if (inv.AddItem(item))
+                {
 
-        MessageDisplay.Instance.EditorMessage(item.inventoryType.ToString() +" - No Such Inventory.", 2f);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

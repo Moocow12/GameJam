@@ -91,4 +91,15 @@ public class CraftingManager : MonoBehaviour {
         _inv.finishedItemSlot.ClearSlot();
     }
 
+
+    public void TakingFinishedItem()
+    {
+        foreach(Slot s in _inv.slots)
+        {
+            if(!s.IsEmpty())
+            {
+                s.RemoveItem();
+            }
+        }
+    }
 }

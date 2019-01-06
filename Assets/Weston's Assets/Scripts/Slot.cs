@@ -203,4 +203,13 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
         items = new List<Item>();
 
     }
+
+    public ItemType GetItemType()
+    {
+        if(items.Count >0)
+        {
+            return items[0].itemType;
+        }
+        return ItemType.None;
+    }
 }

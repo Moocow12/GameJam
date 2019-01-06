@@ -21,11 +21,28 @@ public class PickupItem : MonoBehaviour {
     /// </summary>
     private void OnMouseDown()
     {
-        if(manager.AddItem(item))
+        switch (item.itemType)
+        {
+            case ItemType.Offensive:
+                if (manager.AddItem(item,InventoryType.OffensivePotion))
+                {
+                    //destroys the item if it is successfully added.
+                    Destroy(gameObject);
+                }
+                return;
+            case ItemType.Defensive:
+                if (manager.AddItem(item,InventoryType.DefensivePotion))
+                {
+                    //destroys the item if it is successfully added.
+                    Destroy(gameObject);
+                }
+                return;
+        }
+        if (manager.AddItem(item, InventoryType.CraftingMaterials))
         {
             //destroys the item if it is successfully added.
             Destroy(gameObject);
         }
-        
+
     }
 }

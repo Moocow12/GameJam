@@ -14,8 +14,8 @@ MonoBehaviour:
   stackSize: 1
   inventoryIcon: {fileID: 0}
   combatImage: {fileID: 0}
-  inventoryType: 0
-  ingredient1: {fileID: 0}
-  ingredient2: {fileID: 0}
-  ingredient3: {fileID: 0}
-  producedItem: {fileID: 0}
+  itemType: 0
+  ingredient1: {fileID: 11400000, guid: 42d7f3b9365e60b47bf079783195301f, type: 2}
+  ingredient2: {fileID: 11400000, guid: 2791ae773c2af134fa6d2072a28e4a04, type: 2}
+  ingredient3: {fileID: 11400000, guid: da3a5a88b950ead4f8765324da06e4b6, type: 2}
+  producedItem: {fileID: 11400000, guid: bf88a380a2a58ca49a6536de04d5b1ba, type: 2}

@@ -7,6 +7,7 @@ using System;
 /// </summary>
 public enum InventoryType
 {
+    None,
     CraftingMaterials,
     Crafter,
     DefensivePotion,
@@ -26,7 +27,7 @@ public class Inventory : MonoBehaviour {
     public InventoryType type;
     [Header("Use Only When Type 'Crafter'")]
     public Slot finishedItemSlot;
-
+    public ItemType[] acceptedItemTypes;
 
 	// Use this for initialization
 	void Start () {
@@ -46,8 +47,6 @@ public class Inventory : MonoBehaviour {
             {
                 s.AddItem(item);
                 return true;
-                
-                
             }
             else if(s.IsEmpty())
             {
@@ -59,5 +58,15 @@ public class Inventory : MonoBehaviour {
         return false;
     }
 
-    
+    public bool IsCorrectItemType(ItemType type)
+    {
+        foreach(ItemType t in acceptedItemTypes)
+        {
+            if(type == t)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
