@@ -64,12 +64,18 @@ public class Launcher : MonoBehaviour {
 
     private void LaunchProjectile()
     {
-        GameObject projectile = Instantiate(potionPrefab, this.transform.position, this.transform.rotation);        // spawn a potionPrefab
-        force = Mathf.Clamp(force, 0f, 200f);       // limit the max amount of force to launch with
-        projectile.GetComponent<Rigidbody2D>().AddForce((angle * (force * -1)), ForceMode2D.Force);         // give the projectile an appropriate force at the appropriate angle
+        SlotSelector selector = FindObjectOfType<SlotSelector>();
+        Item item = selector.GetThrowingItem();
+        if (item != null)
+        {
+            GameObject projectile = Instantiate(potionPrefab, this.transform.position, this.transform.rotation);        // spawn a potionPrefab
+            projectile.GetComponent<Projectile>().Initialize(item);
+            force = Mathf.Clamp(force, 0f, 200f);       // limit the max amount of force to launch with
+            projectile.GetComponent<Rigidbody2D>().AddForce((angle * (force * -1)), ForceMode2D.Force);         // give the projectile an appropriate force at the appropriate angle
 
-        float torque = Random.Range(-3f, 3f);
-        projectile.GetComponent<Rigidbody2D>().AddTorque(torque);           // add a little random spin (looks nice!)
+            float torque = Random.Range(-3f, 3f);
+            projectile.GetComponent<Rigidbody2D>().AddTorque(torque);           // add a little random spin (looks nice!)
+        }
     }
 
     private void CalculateProjectileVector()

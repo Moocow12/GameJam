@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
     public int damage = 0;
+    public BreakBehaviour breakBehaviour;
     public float lifeTime = 3f;
     protected float lifeTimeCD;
     protected bool hasLanded = false;
@@ -24,6 +25,7 @@ public class Projectile : MonoBehaviour {
 
     protected void Break()
     {
+        breakBehaviour.Break();
         Destroy(this.gameObject);
     }
 
@@ -34,6 +36,13 @@ public class Projectile : MonoBehaviour {
         {
             Break();        // the potion breaks
         }
+    }
+
+    public void Initialize(Item item)
+    {
+        this.damage = item.damage;
+        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = item.inventoryIcon;
+        this.breakBehaviour = item.breakBehaviour;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

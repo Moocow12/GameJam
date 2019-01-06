@@ -16,11 +16,11 @@ public enum ItemType
 [CreateAssetMenu(fileName = "New Item",menuName ="Item/Base")]
 public class Item : ScriptableObject {
 
-
+    public int damage;
+    public BreakBehaviour breakBehaviour;
     public string description;
     public int stackSize = 1;
     public Sprite inventoryIcon;
-    public Sprite combatImage;
 
     public ItemType itemType;
 
