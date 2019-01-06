@@ -20,36 +20,10 @@ public class InventoryManager : MonoBehaviour {
     public InventoryType secondType;
     bool firstInitialized, secondInitialized;
 
-    //public void SlotClick(List<Item> items,InventoryType type)
-    //{
-        
-    //    if(firstItems.Count == 0 && items.Count != 0) //Makes sure that the first slot selected is not empty
-    //    {
-    //        firstType = type;
-    //        firstItems = items;
-    //        firstInitialized = true;
-    //    }
-    //    if (firstItems.Count != 0 && secondItems.Count == 0 && items != firstItems) //Selects the second slot if it is empty or not.
-    //    {
-    //        secondType = type;
-    //        secondItems = items;
-    //        secondInitialized = true;
-    //    }
-    //    if(firstInitialized && secondInitialized)
-    //    {
-    //        if(firstType == secondType)
-    //        {
-    //            SwitchItems();
-    //        }
-    //        firstInitialized = false;
-    //        secondInitialized = false;
-    //        firstItems = new List<Item>() ;
-    //        secondItems = new List<Item>();
-    //    }
-       
-    //}
 
     public Slot firstSlot, secondSlot;
+
+
 
     public void SlotClick(Slot s)
     {
@@ -101,26 +75,7 @@ public class InventoryManager : MonoBehaviour {
     }
 
 
-
-    //public void SwitchItems()
-    //{
-    //    List<Item> temp = firstItems;
-    //    firstItems = secondItems;
-    //    secondItems = temp;
-    //    if(Application.isEditor)
-    //    {
-    //        Debug.Log("Switching Items");
-    //    }
-        
-    //}
-
-
-
-
-
-
-
-
+    
 	// Update is called once per frame
 	void Update () {
 		
@@ -129,7 +84,7 @@ public class InventoryManager : MonoBehaviour {
 
     public bool AddItem(Item item)
     {
-        
+        Debug.Log("Adding");
         //Goes through each of the inventories within the game
         foreach(Inventory inv in inventories)
         {

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224067792376949152}
   - component: {fileID: 114059620261357422}
-  - component: {fileID: 114689412529190574}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -54,13 +53,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1188812820432434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821ad03fe94a77c44a94f484b7045e0e, type: 3}
+  m_Script: {fileID: 11500000, guid: f7b243698b603874991f4234035b2b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slots: []
-  numberOfSlots: 5
   type: 0
-  slotPrefab: {fileID: 1518836171808720, guid: 05383b716c859864a8a7c824dd472c61, type: 2}
+  slotPrefab: {fileID: 0}
+  finishedItemSlot: {fileID: 0}
 --- !u!114 &114395198328851740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,29 +81,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114689412529190574
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1188812820432434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 50, y: 50}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
 --- !u!114 &114735883592392386
 MonoBehaviour:
   m_ObjectHideFlags: 1

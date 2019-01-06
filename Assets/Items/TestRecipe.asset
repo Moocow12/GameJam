@@ -8,14 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0730de9f8788fa5429eeae5e7d94fff5, type: 3}
+  m_Script: {fileID: 11500000, guid: e2c854563364c544a9022c3ad7ae0bc6, type: 3}
   m_Name: TestRecipe
   m_EditorClassIdentifier: 
   stackSize: 1
-  inventoryIcon: {fileID: 21300000, guid: 291e8604f4f900943a9ec54d8aa1b15c, type: 3}
+  inventoryIcon: {fileID: 0}
   combatImage: {fileID: 0}
   inventoryType: 0
-  ingredient1: {fileID: 11400000, guid: 42d7f3b9365e60b47bf079783195301f, type: 2}
-  ingredient2: {fileID: 11400000, guid: 2791ae773c2af134fa6d2072a28e4a04, type: 2}
-  ingredient3: {fileID: 11400000, guid: da3a5a88b950ead4f8765324da06e4b6, type: 2}
-  producedItem: {fileID: 11400000, guid: bf88a380a2a58ca49a6536de04d5b1ba, type: 2}
+  ingredient1: {fileID: 0}
+  ingredient2: {fileID: 0}
+  ingredient3: {fileID: 0}
+  producedItem: {fileID: 0}

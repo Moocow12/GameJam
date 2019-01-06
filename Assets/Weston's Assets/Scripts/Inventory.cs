@@ -15,8 +15,6 @@ public enum InventoryType
 }
 
 
-
-
 public class Inventory : MonoBehaviour {
 
     //LocalVariables
@@ -25,41 +23,20 @@ public class Inventory : MonoBehaviour {
 
 
     public Slot[] slots;
-    public int numberOfSlots;
     public InventoryType type;
-
-    public GameObject slotPrefab;
+    [Header("Use Only When Type 'Crafter'")]
     public Slot finishedItemSlot;
 
 
 	// Use this for initialization
 	void Start () {
        
-        Initialize();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
-    public virtual void Initialize()
-    {
-        if (type != InventoryType.Crafter)
-        {
-            _rect = GetComponent<RectTransform>();
-            _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Camera.main.pixelWidth);
-            _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Camera.main.pixelHeight);
-            slots = new Slot[numberOfSlots];
-            for (int i = 0; i < numberOfSlots; i++)
-            {
-
-                //Adds the Prefab item to the 
-                GameObject obj = Instantiate(slotPrefab, transform);
-                slots[i] = obj.GetComponent<Slot>();
-            }
-        }
-    }
 
     public bool AddItem(Item item)
     {

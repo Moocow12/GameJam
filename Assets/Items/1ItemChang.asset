@@ -8,14 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0730de9f8788fa5429eeae5e7d94fff5, type: 3}
+  m_Script: {fileID: 11500000, guid: e2c854563364c544a9022c3ad7ae0bc6, type: 3}
   m_Name: 1ItemChang
   m_EditorClassIdentifier: 
   stackSize: 1
   inventoryIcon: {fileID: 0}
   combatImage: {fileID: 0}
   inventoryType: 0
-  ingredient1: {fileID: 11400000, guid: 6b580cdadddc7b84e9b945a1e6784dd9, type: 2}
+  ingredient1: {fileID: 0}
   ingredient2: {fileID: 0}
   ingredient3: {fileID: 0}
-  producedItem: {fileID: 11400000, guid: da3a5a88b950ead4f8765324da06e4b6, type: 2}
+  producedItem: {fileID: 0}
