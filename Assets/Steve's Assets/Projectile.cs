@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour {
     public int damage = 0;
     public float lifeTime = 3f;
     private float lifeTimeCD;
-    private bool hasLanded = false;
+    protected bool hasLanded = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,12 +22,12 @@ public class Projectile : MonoBehaviour {
         }
 	}
 
-    private void Break()
+    protected void Break()
     {
         Destroy(this.gameObject);
     }
 
-    private void Countdown()
+    protected void Countdown()
     {
         lifeTimeCD -= Time.deltaTime;       // countdown lifeTimeCD each frame
         //print(lifeTimeCD);
