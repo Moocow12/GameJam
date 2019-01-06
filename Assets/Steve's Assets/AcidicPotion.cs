@@ -2,31 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "New Behavior",menuName = "Potion Behaviour")]
 public class AcidicPotion : BreakBehaviour {
 
     public AcidPool acid;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void Break(Vector2 collisionPosition)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            Break();
-        }
-    }
-
-    public override void Break()
-    {
-        Instantiate(acid, transform.position, new Quaternion(0, 0, 0, 0));
-        Destroy(gameObject);
+        
+        Instantiate(acid,collisionPosition, new Quaternion(0, 0, 0, 0));
     }
 }

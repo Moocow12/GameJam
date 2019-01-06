@@ -1266,7 +1266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7188a8ce156121b4c9f765b1ddc6c80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potionPrefab: {fileID: 1200897594588240, guid: 75af91066b823304e995d26a12614323,
+  potionPrefab: {fileID: 2207701501055976022, guid: 595669bf234787645872c2398382b709,
     type: 3}
   powerBar: {fileID: 77191608}
   trajectoryDotPrefab: {fileID: 1312942179864214, guid: 674fa8ba9a3ee6b4da0df9cfdd16bab7,

@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour {
     protected float lifeTimeCD;
     protected bool hasLanded = false;
 
+
+    protected Vector2 collisionPoint;
 	// Use this for initialization
 	void Start () {
         lifeTimeCD = lifeTime;
@@ -25,7 +27,7 @@ public class Projectile : MonoBehaviour {
 
     protected void Break()
     {
-        breakBehaviour.Break();
+        breakBehaviour.Break(collisionPoint);
         Destroy(this.gameObject);
     }
 
@@ -47,12 +49,20 @@ public class Projectile : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Enemy>())         // if we collided with an enemy...
+        ContactPoint2D point = collision.GetContact(0);
+        collisionPoint = point.point;
+        if (collision.gameObject.GetComponent<Enemy>() )         // if we collided with an enemy...
         {
+
             collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);      // deal damage to it
+            
             Break();        // break on impact with an enemy
         }
-
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            Break();
+        }
+        
         hasLanded = true;
     }
 }
