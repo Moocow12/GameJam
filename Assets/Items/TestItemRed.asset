@@ -14,4 +14,4 @@ MonoBehaviour:
   stackSize: 3
   inventoryIcon: {fileID: 21300000, guid: 7e5e55ad1977f8c4fac359c7b88776e8, type: 3}
   combatImage: {fileID: 21300000, guid: 7e5e55ad1977f8c4fac359c7b88776e8, type: 3}
-  itemType: 1
+  itemType: 3

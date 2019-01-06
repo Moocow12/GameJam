@@ -36,6 +36,10 @@ public class CraftingManager : MonoBehaviour {
             found3 = false;
             foreach (Slot s in _inv.slots)
             {
+                if(s.IsEmpty())
+                {
+                    s.items = new List<Item>();
+                }
                 if(!found1  && recipe.ingredient1 == null && s.IsEmpty())
                 {
                     found1 = true;
