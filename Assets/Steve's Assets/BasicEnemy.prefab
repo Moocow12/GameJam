@@ -131,6 +131,7 @@ MonoBehaviour:
   health: 100
   moveSpeed: 15
   damage: 5
+  isFlying: 0
 --- !u!212 &212154016870240786
 SpriteRenderer:
   m_ObjectHideFlags: 1

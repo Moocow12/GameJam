@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ExplosivePotion : Projectile {
 
-    private CircleCollider2D explosionRadius;
+    public float blastRadius = 1f;
     private float explosionDuration = .1f;
     private float explosionDurationCD;
 
 	// Use this for initialization
 	void Start () {
         explosionDurationCD = explosionDuration;
-        explosionRadius = GetComponentInChildren<CircleCollider2D>();
-	}
+        lifeTimeCD = lifeTime;
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,10 +27,32 @@ public class ExplosivePotion : Projectile {
     {
         if (collision.gameObject.GetComponent<Enemy>())         // if we collided with an enemy...
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);      // deal damage to it
+            //collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);      // deal damage to it
+            lifeTimeCD = 0;
             Break();        // break on impact with an enemy
         }
 
         hasLanded = true;
+    }
+
+    new protected void Countdown()
+    {
+        lifeTimeCD -= Time.deltaTime;       // countdown lifeTimeCD each frame
+        if (lifeTimeCD <= 0)        // if the lifeTime has run out...
+        {
+            Break();        // the potion breaks
+        }
+    }
+
+    new private void Break()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, blastRadius);
+        foreach (Collider2D col in colliders)
+        {
+            if (col.GetComponent<Enemy>())
+                col.GetComponent<Enemy>().TakeDamage(damage);
+        }
+
+        Destroy(this.gameObject);
     }
 }

@@ -30,12 +30,14 @@ public class Launcher : MonoBehaviour {
         {
             LaunchProjectile();         // call LaunchProjectile()
             ClearTrajectory();
+            powerBar.gameObject.SetActive(false);
             isGripped = false;
             GetComponentInChildren<Grip>().transform.localPosition = new Vector3(0, 0);
         }
         if (Input.GetKey(KeyCode.Mouse0) && isGripped == true)
         {
             CreateTrajectory(dotNum);
+            powerBar.gameObject.SetActive(true);
         }
         
         CalculateProjectileVector();        // call CaluculateProjectileVector()

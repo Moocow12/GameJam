@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour {
 
     public int damage = 0;
     public float lifeTime = 3f;
-    private float lifeTimeCD;
+    protected float lifeTimeCD;
     protected bool hasLanded = false;
 
 	// Use this for initialization
@@ -30,7 +30,6 @@ public class Projectile : MonoBehaviour {
     protected void Countdown()
     {
         lifeTimeCD -= Time.deltaTime;       // countdown lifeTimeCD each frame
-        //print(lifeTimeCD);
         if (lifeTimeCD <= 0)        // if the lifeTime has run out...
         {
             Break();        // the potion breaks

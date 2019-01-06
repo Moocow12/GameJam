@@ -131,6 +131,7 @@ MonoBehaviour:
   health: 100
   moveSpeed: 0
   damage: 5
+  isFlying: 0
   jumpForce: 150
   jumpRate: 2.5
 --- !u!212 &212891667798751768
