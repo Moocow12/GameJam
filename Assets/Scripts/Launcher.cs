@@ -12,6 +12,8 @@ public class Launcher : MonoBehaviour {
     private const float trajectoryModifier = .0165f;
     public int dotNum = 8;
 
+    private bool isGripped = false;
+    public void SetGripped(bool value) { isGripped = value; }
     private float force = 1f;
     private Vector3 angle;
     List<GameObject> dots = new List<GameObject>();
@@ -24,12 +26,14 @@ public class Launcher : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))         // if we have released the left click this frame...
+        if (Input.GetKeyUp(KeyCode.Mouse0) && isGripped == true)         // if we have released the left click this frame, and the grip was being held...
         {
             LaunchProjectile();         // call LaunchProjectile()
             ClearTrajectory();
+            isGripped = false;
+            GetComponentInChildren<Grip>().transform.localPosition = new Vector3(0, 0);
         }
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && isGripped == true)
         {
             CreateTrajectory(dotNum);
         }

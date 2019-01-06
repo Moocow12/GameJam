@@ -8,7 +8,6 @@ public class JumperEnemy : Enemy {
     public float jumpRate = 2f;
 
     private float jumpRateCD;
-    private Rigidbody2D rbody;
 
 	// Use this for initialization
 	void Start () {
