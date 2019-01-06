@@ -27,9 +27,17 @@ public class InventoryManager : MonoBehaviour {
 
     public void SlotClick(Slot s)
     {
+        //Sets the first slot to the designated spot.
         if(firstSlot == null)
         {
             firstSlot = s;
+
+            //If an empty slot is choosen reset the slot to null
+            if(firstSlot.IsEmpty())
+            {
+                firstSlot = null;
+            }
+           
         }
         else if(secondSlot == null)
         {

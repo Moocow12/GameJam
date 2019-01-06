@@ -16,6 +16,8 @@ public enum ItemType
 [CreateAssetMenu(fileName = "New Item",menuName ="Item/Base")]
 public class Item : ScriptableObject {
 
+
+    public string description;
     public int stackSize = 1;
     public Sprite inventoryIcon;
     public Sprite combatImage;
@@ -24,7 +26,6 @@ public class Item : ScriptableObject {
 
     public virtual bool Use()
     {
-       
-        return true;
+        return false;
     }
 }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c854563364c544a9022c3ad7ae0bc6, type: 3}
+  m_Name: FlameRecipe
+  m_EditorClassIdentifier: 
+  ingredient1: {fileID: 11400000, guid: 044934faefd7135418508054fb75c622, type: 2}
+  ingredient2: {fileID: 11400000, guid: 22c036bbc4146af438dd64401d6912da, type: 2}
+  ingredient3: {fileID: 11400000, guid: a22a5297344f8cb4eb2a1f59f5778ffe, type: 2}
+  producedItem: {fileID: 11400000, guid: 9ede5718588da5b4285c2bd8a306bb0a, type: 2}

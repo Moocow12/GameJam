@@ -9,9 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b7b7f7413fab074bace299705f93cd4, type: 3}
-  m_Name: TestItemOrange
+  m_Name: Menthol
   m_EditorClassIdentifier: 
-  stackSize: 3
-  inventoryIcon: {fileID: 21300000, guid: 74c4ba6cea9364042ae8396177989dea, type: 3}
-  combatImage: {fileID: 21300000, guid: 74c4ba6cea9364042ae8396177989dea, type: 3}
-  itemType: 1
+  description: Mix with other ingredients to make new potions.
+  stackSize: 99
+  inventoryIcon: {fileID: 21300020, guid: 778b669c826ff2d408f2891d3670c772, type: 3}
+  combatImage: {fileID: 0}
+  itemType: 3
