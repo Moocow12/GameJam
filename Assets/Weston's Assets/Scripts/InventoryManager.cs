@@ -42,19 +42,38 @@ public class InventoryManager : MonoBehaviour {
                     SwitchSlots();
                 }
                 //Adds Crafting Materials into the crafter
-                else if (firstSlot.SlotType() == InventoryType.CraftingMaterials && secondSlot.SlotType() == InventoryType.Crafter)
+                else if (secondSlot.SlotType() == InventoryType.Crafter)
                 {
                     //Makes it equal to the same list
                     secondSlot.items = firstSlot.items;
                 }
                 //Exchanges crafting materials with the new material 
-                else if (firstSlot.SlotType() == InventoryType.Crafter && secondSlot.SlotType() == InventoryType.CraftingMaterials)
+                else if (firstSlot.SlotType() == InventoryType.Crafter)
                 {
                     if(firstSlot != secondSlot)
                     {
                         firstSlot.items = secondSlot.items;
                     }
+                }else if(secondSlot.SlotType() == InventoryType.CraftingMaterials)
+                {
+                    if(secondSlot.GetItemType() == firstSlot.GetItemType())
+                    {
+                        SwitchSlots();
+                    }
+                    else
+                    {
+                        if(secondSlot.IsEmpty())
+                        {
+                            SwitchSlots();
+                        }
+                        else
+                        {
+                            MessageDisplay.Instance.DisplayMessage("Can not switch items, Please use an empty Slot", 2f);
+                        }
+                        
+                    }
                 }
+                    
                 //Adding to the offensive Potion Inventory
                 else if(!firstSlot.IsEmpty() && (firstSlot.SlotType() == InventoryType.Crafter || firstSlot.SlotType() == InventoryType.CraftingMaterials) && secondSlot.SlotType() == InventoryType.OffensivePotion)
                 {
