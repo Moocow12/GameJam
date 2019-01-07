@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour {
 
     public void Freeze(float duration)
     {
-        print("Frozen");
+        //print("Frozen");
         freezeDuration = duration;
     }
 
