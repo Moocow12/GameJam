@@ -53,11 +53,14 @@ public class Structure : MonoBehaviour {
 
     public void TakeDamage()
     {
+
         wall.Peek().SetHealth(wall.Peek().GetHealth() - 1);
+        print("Top block health: " + wall.Peek().GetHealth());
         if (wall.Peek().GetHealth() <= 0 && wall.Count > 0)
         {
+            print("Top block destroyed");
             currentTop.y -= .56f;
-            Destroy(wall.Pop());
+            Destroy(wall.Pop().gameObject);
         }
         else
         {
