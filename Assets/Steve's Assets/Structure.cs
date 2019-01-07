@@ -46,6 +46,10 @@ public class Structure : MonoBehaviour {
 
     public void AddBlock()
     {
+        if (wall.Count == 0)
+        {
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
         wall.Peek().SetHealth(2);
         wall.Push(Instantiate(wallBlockPrefab, currentTop, RandomRotation(), this.gameObject.transform));
         currentTop.y += .56f;
@@ -61,6 +65,10 @@ public class Structure : MonoBehaviour {
             print("Top block destroyed");
             currentTop.y -= .56f;
             Destroy(wall.Pop().gameObject);
+            if (wall.Count == 0)
+            {
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
         }
         else
         {

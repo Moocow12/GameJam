@@ -143,6 +143,11 @@ public class Enemy : MonoBehaviour {
             collision.gameObject.GetComponent<Structure>().TakeDamage();      // deal damage to the structure
             StartCoroutine(Die());
         }
+        else if (collision.gameObject.GetComponent<Player>())
+        {
+            collision.gameObject.GetComponent<Player>().TakeDamage();
+            StartCoroutine(Die());
+        }
     }
 
     private int RandomItem()

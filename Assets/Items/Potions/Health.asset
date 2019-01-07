@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Health
   m_EditorClassIdentifier: 
   damage: 0
-  breakBehaviour: {fileID: 0}
+  breakBehaviour: {fileID: 11400000, guid: 94e820406059e3946ac702b291ba4f4a, type: 2}
   description: Restores health to the player.
   stackSize: 10
   inventoryIcon: {fileID: 21300024, guid: 778b669c826ff2d408f2891d3670c772, type: 3}
   itemType: 2
   breakAudioClip: {fileID: 8300000, guid: 185679235e9c47b43b81ef7001f6255b, type: 3}
+  objectPrefabOnBreak: {fileID: 0}
+  prefabDestructionTime: 0
   note: 0
