@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d9e8d1717964444bbb09e33861a454, type: 3}
   m_Name: VoidBehaviour
   m_EditorClassIdentifier: 
-  damage: 0
-  vacuumRadius: 0
-  force: 0
+  damage: 25
+  vacuumRadius: 10
+  force: -75
