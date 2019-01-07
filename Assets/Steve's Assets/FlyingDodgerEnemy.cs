@@ -41,7 +41,22 @@ public class FlyingDodgerEnemy : Enemy {
             dodgeIntervalCD = dodgeInterval;        // reset the dodge interval
             movingUp = !movingUp;       // change dodge directions
         }
-	}
+
+        if (poisonDuration > 0)
+        {
+            ProcessPoison();
+        }
+
+        if (freezeDuration > 0)
+        {
+            freezeDuration -= Time.deltaTime;
+            rbody.constraints = RigidbodyConstraints2D.FreezePosition;
+        }
+        else if (freezeDuration <= 0)
+        {
+            rbody.constraints = constraints;
+        }
+    }
 
     private void ApplyVerticalForce(float value)
     {

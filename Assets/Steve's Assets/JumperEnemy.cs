@@ -26,7 +26,22 @@ public class JumperEnemy : Enemy {
             Jump();
             jumpRateCD = jumpRate;
         }
-	}
+
+        if (poisonDuration > 0)
+        {
+            ProcessPoison();
+        }
+
+        if (freezeDuration > 0)
+        {
+            freezeDuration -= Time.deltaTime;
+            rbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else if (freezeDuration <= 0)
+        {
+            rbody.constraints = constraints;
+        }
+    }
 
     private void Jump()
     {
