@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour {
 
 
     protected Vector2 collisionPoint;
+    protected GameObject collision;
 	// Use this for initialization
 	void Start () {
         lifeTimeCD = lifeTime;
@@ -27,7 +28,7 @@ public class Projectile : MonoBehaviour {
 
     protected void Break()
     {
-        breakBehaviour.Break(collisionPoint);
+        breakBehaviour.Break(collisionPoint, collision);
         Destroy(this.gameObject);
     }
 
@@ -51,6 +52,7 @@ public class Projectile : MonoBehaviour {
     {
         ContactPoint2D point = collision.GetContact(0);
         collisionPoint = point.point;
+        this.collision = collision.gameObject;
         if (collision.gameObject.GetComponent<Enemy>() )         // if we collided with an enemy...
         {
 

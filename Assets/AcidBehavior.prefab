@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8454349585442953437}
-  - component: {fileID: 3503442371376616221}
   m_Layer: 0
   m_Name: AcidBehavior
   m_TagString: Untagged
@@ -31,16 +30,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3503442371376616221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5376097019129850217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a45636a9e768a4ca3a1ef584ae367e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acid: {fileID: 114166682179326240, guid: 3e00ae38d635d054cb0909d189d7e794, type: 3}

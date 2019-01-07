@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a45636a9e768a4ca3a1ef584ae367e, type: 3}
-  m_Name: Test
+  m_Script: {fileID: 11500000, guid: 833a032d05197ea439f267a0944050fd, type: 3}
+  m_Name: ExplosiveBehaviour
   m_EditorClassIdentifier: 
-  acid: {fileID: 114166682179326240, guid: 3e00ae38d635d054cb0909d189d7e794, type: 3}
+  damage: 100
+  blastRadius: 1

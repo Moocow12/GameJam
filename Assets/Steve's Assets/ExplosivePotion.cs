@@ -2,52 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosivePotion : Projectile {
+[CreateAssetMenu(fileName = "New Behavior", menuName = "Potion Behaviour/ExplosivePotion")]
+public class ExplosivePotion : BreakBehaviour {
 
     public float blastRadius = 1f;
 
-	// Use this for initialization
-	void Start () {
-        lifeTimeCD = lifeTime;
-    }
-
-    // Update is called once per frame
-    void Update()
+    public override void Break(Vector2 collisionPosition, GameObject collision)
     {
-        if (hasLanded == true)          // if the potion has landed on a surface...
-        {
-            Countdown();        // call Countdown()
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<Enemy>())         // if we collided with an enemy...
-        {
-            Break();        // break on impact with an enemy
-        }
-
-        hasLanded = true;
-    }
-
-    new protected void Countdown()
-    {
-        lifeTimeCD -= Time.deltaTime;       // countdown lifeTimeCD each frame
-        if (lifeTimeCD <= 0)        // if the lifeTime has run out...
-        {
-            Break();        // the potion breaks
-        }
-    }
-
-    new private void Break()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, blastRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(collisionPosition, blastRadius);
         foreach (Collider2D col in colliders)
         {
             if (col.GetComponent<Enemy>())
                 col.GetComponent<Enemy>().TakeDamage(damage);
         }
-
-        Destroy(this.gameObject);
     }
 }
