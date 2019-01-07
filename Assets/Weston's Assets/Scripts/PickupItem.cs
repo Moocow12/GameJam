@@ -16,22 +16,44 @@ public class PickupItem : MonoBehaviour {
 	}
 
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            foreach(RaycastHit2D hit in hits)
+            {
+                if(hit.transform.gameObject == gameObject)
+                {
+                    AddItem();
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// Tries to pick up the item within the inventory system.
-    /// </summary>
-    private void OnMouseDown()
+    ///// </summary>
+    //private void OnMouseDown()
+    //{
+    //    AddItem();
+
+    //}
+
+    public void AddItem()
     {
         switch (item.itemType)
         {
             case ItemType.Offensive:
-                if (manager.AddItem(item,InventoryType.OffensivePotion))
+                if (manager.AddItem(item, InventoryType.OffensivePotion))
                 {
                     //destroys the item if it is successfully added.
                     Destroy(gameObject);
                 }
                 return;
             case ItemType.Defensive:
-                if (manager.AddItem(item,InventoryType.DefensivePotion))
+                if (manager.AddItem(item, InventoryType.DefensivePotion))
                 {
                     //destroys the item if it is successfully added.
                     Destroy(gameObject);
