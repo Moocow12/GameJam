@@ -19,4 +19,7 @@ MonoBehaviour:
   inventoryIcon: {fileID: 21300034, guid: 778b669c826ff2d408f2891d3670c772, type: 3}
   itemType: 1
   breakAudioClip: {fileID: 8300000, guid: d1f56e558db39af45bd19812e798f05e, type: 3}
+  objectPrefabOnBreak: {fileID: 5226548906712894213, guid: e913cf30f77e71643a8f57b09b3d1383,
+    type: 3}
+  prefabDestructionTime: 2
   note: 0

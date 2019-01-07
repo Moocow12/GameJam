@@ -13,8 +13,9 @@ public class Projectile : MonoBehaviour {
 
     protected Vector2 collisionPoint;
     protected GameObject collision;
-
+    protected GameObject prefabObjectOnBreak;
     protected AudioClip soundToPlayOnImpact;
+    protected float prefabDestructionTime;
     // Use this for initialization
     void Start () {
         lifeTimeCD = lifeTime;
@@ -45,7 +46,12 @@ public class Projectile : MonoBehaviour {
         {
             breakBehaviour.Break(collisionPoint, collision);
         }
-       
+        if(prefabObjectOnBreak != null)
+        {
+            GameObject obj = Instantiate(prefabObjectOnBreak, collisionPoint, Quaternion.identity);
+            Destroy(obj, prefabDestructionTime);
+        }
+
         Destroy(gameObject);
     }
 
@@ -63,6 +69,8 @@ public class Projectile : MonoBehaviour {
     public void Initialize(Item item)
     {
         this.damage = item.damage;
+        prefabDestructionTime = item.prefabDestructionTime;
+        prefabObjectOnBreak = item.objectPrefabOnBreak;
         soundToPlayOnImpact = item.breakAudioClip;
         gameObject.GetComponentInChildren<SpriteRenderer>().sprite = item.inventoryIcon;
         this.breakBehaviour = item.breakBehaviour;

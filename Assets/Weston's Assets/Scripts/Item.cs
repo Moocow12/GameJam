@@ -24,6 +24,9 @@ public class Item : ScriptableObject {
 
     public ItemType itemType;
     public AudioClip breakAudioClip;
+
+    public GameObject objectPrefabOnBreak;
+    public float prefabDestructionTime;
     public virtual bool Use()
     {
         return false;
