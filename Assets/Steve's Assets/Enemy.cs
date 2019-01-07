@@ -11,14 +11,18 @@ public class Enemy : MonoBehaviour {
 
     protected Rigidbody2D rbody;
 
-    private float poisonDuration = 0;
-    private float poisontickRate = 0;
-    private float poisontickRateCD = 0;
-    private int poisonDamage = 0;
+    protected float poisonDuration = 0;
+    protected float poisontickRate = 0;
+    protected float poisontickRateCD = 0;
+    protected int poisonDamage = 0;
+
+    protected float freezeDuration;
+    protected RigidbodyConstraints2D constraints;
 
 	// Use this for initialization
 	void Start () {
         rbody = this.GetComponent<Rigidbody2D>();
+        constraints = rbody.constraints;
         if (isFlying == true)
         {
             this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y + 1);
@@ -33,9 +37,19 @@ public class Enemy : MonoBehaviour {
         {
             ProcessPoison();
         }
+
+        if (freezeDuration > 0)
+        {
+            freezeDuration -= Time.deltaTime;
+            rbody.constraints = RigidbodyConstraints2D.FreezePosition;
+        }
+        else if (freezeDuration <= 0)
+        {
+            rbody.constraints = constraints;
+        }
 	}
 
-    private void ProcessPoison()
+    protected void ProcessPoison()
     {
         poisonDuration -= Time.deltaTime;
         if (poisontickRateCD > 0)
@@ -113,12 +127,17 @@ public class Enemy : MonoBehaviour {
         poisontickRateCD = poisontickRate;
     }
 
+    public void Freeze(float duration)
+    {
+        freezeDuration = duration;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Structure>())       // if we have just collided with a structure...
         {
-            collision.gameObject.GetComponent<Structure>().TakeDamage(damage);      // deal damage to the structure
-            Die();
+            collision.gameObject.GetComponent<Structure>().TakeDamage();      // deal damage to the structure
+            StartCoroutine(Die());
         }
     }
 }

@@ -10,7 +10,6 @@ public class AcidicPotion : BreakBehaviour {
 
     public override void Break(Vector2 collisionPosition, GameObject collision)
     {
-        
         Instantiate(acid, new Vector3(collisionPosition.x, -2.6f), new Quaternion(0, 0, 0, 0));
     }
 }

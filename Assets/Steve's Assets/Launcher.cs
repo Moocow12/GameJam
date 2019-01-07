@@ -70,7 +70,7 @@ public class Launcher : MonoBehaviour {
         {
             GameObject projectile = Instantiate(potionPrefab, this.transform.position, this.transform.rotation);        // spawn a potionPrefab
             projectile.GetComponent<Projectile>().Initialize(item);
-            force = Mathf.Clamp(force, 0f, 200f);       // limit the max amount of force to launch with
+            if (force > 200f) { force = 200f; }
             projectile.GetComponent<Rigidbody2D>().AddForce((angle * (force * -1)), ForceMode2D.Force);         // give the projectile an appropriate force at the appropriate angle
 
             float torque = Random.Range(-3f, 3f);
@@ -85,7 +85,7 @@ public class Launcher : MonoBehaviour {
         position = position - this.gameObject.transform.position;
 
         force = (Mathf.Abs(position.x) + Mathf.Abs(position.y)) * forceMultiplyer;          // the absolute value of position.x and position.y is the value for force
-        force = Mathf.Clamp(force, 0f, 200f);       // limit the max amount of force to launch with
+        if (force > 200f) { force = 200f; }
         powerBar.value = force;         // display force on a slider
         //print("Current force: " + force);
 
@@ -95,7 +95,7 @@ public class Launcher : MonoBehaviour {
 
     private Vector3 CalculatePosition(float elapsedTime)
     {
-        force = Mathf.Clamp(force, 0f, 200f);       // limit the max amount of force to launch with
+        if (force > 200f) { force = 200f; }
         return Physics.gravity * elapsedTime * elapsedTime * .5f + (angle * (force * -trajectoryModifier)) * elapsedTime + this.transform.position;
     }
 
