@@ -562,6 +562,17 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 419355980}
+    - target: {fileID: 114872673589162148, guid: b87abc14c5a706f4ea0e2108e2b4ab18,
+        type: 3}
+      propertyPath: items.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114872673589162148, guid: b87abc14c5a706f4ea0e2108e2b4ab18,
+        type: 3}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 83fccb8e1b579c34dae3ca50313807ea,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b87abc14c5a706f4ea0e2108e2b4ab18, type: 3}
 --- !u!1 &264396921
@@ -1542,6 +1553,28 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 419355980}
+    - target: {fileID: 114356123455258532, guid: 6f1afdb964433684391fcd481ef5cac1,
+        type: 3}
+      propertyPath: items.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114356123455258532, guid: 6f1afdb964433684391fcd481ef5cac1,
+        type: 3}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 838c3b53f8b7f3348a9fbf9ba2379df2,
+        type: 2}
+    - target: {fileID: 114479438198408210, guid: 6f1afdb964433684391fcd481ef5cac1,
+        type: 3}
+      propertyPath: items.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114479438198408210, guid: 6f1afdb964433684391fcd481ef5cac1,
+        type: 3}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 83fccb8e1b579c34dae3ca50313807ea,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f1afdb964433684391fcd481ef5cac1, type: 3}
 --- !u!1 &524133405
@@ -2597,7 +2630,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4b07ca2d5a2c9694eb8d3bbce2ff66d3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0

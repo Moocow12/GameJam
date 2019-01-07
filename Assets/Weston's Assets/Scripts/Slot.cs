@@ -181,7 +181,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
     Coroutine mouseHolder;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(SlotType() == InventoryType.Crafter)
+        if(SlotType() == InventoryType.Crafter || SlotType() == InventoryType.DefensivePotion)
         {
             mouseHolder = StartCoroutine(WaitForClick());
             Debug.Log("Entering");
@@ -195,7 +195,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(SlotType() == InventoryType.Crafter)
+        if(SlotType() == InventoryType.Crafter || SlotType() == InventoryType.DefensivePotion)
         {
             StopCoroutine(mouseHolder);
             Debug.Log("Exiting");
@@ -208,7 +208,22 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
     IEnumerator WaitForClick()
     {
         yield return new WaitUntil(() => Input.GetMouseButtonDown(1));
-        items = new List<Item>();
+        if(SlotType() == InventoryType.Crafter)
+        {
+            items = new List<Item>();
+        }
+        else if(SlotType() == InventoryType.DefensivePotion)
+        {
+            if(!IsEmpty())
+            {
+                if(items[0].breakBehaviour != null)
+                {
+                    items[0].breakBehaviour.Break(Vector2.zero, null);
+                }
+                
+                RemoveItem();
+            }
+        }
 
     }
 
