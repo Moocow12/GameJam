@@ -16,9 +16,12 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
     Item itemTypeTester = null;
 
     Inventory inventoryParent;
+    HoverOverDisplay hoverOver;
+
 
     private void Start()
     {
+        hoverOver = FindObjectOfType<HoverOverDisplay>();
         inventoryParent = GetComponentInParent<Inventory>();
         UpdateCount();
         UpdateIcon();
@@ -183,6 +186,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
             mouseHolder = StartCoroutine(WaitForClick());
             Debug.Log("Entering");
         }
+        if(!IsEmpty())
+        {
+            hoverOver.DisplayItem(items[0]);
+        }
         
     }
 
@@ -193,7 +200,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
             StopCoroutine(mouseHolder);
             Debug.Log("Exiting");
         }
-       
+
+        hoverOver.ResetDisplay();
     }
 
 

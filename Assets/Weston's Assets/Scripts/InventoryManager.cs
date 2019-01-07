@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         inventories = FindObjectsOfType<Inventory>();
+        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
 	}
 
     public List<Item> firstItems;
@@ -23,6 +24,7 @@ public class InventoryManager : MonoBehaviour {
 
     public Slot firstSlot, secondSlot;
 
+    public Texture2D defaultCursor;
 
 
     public void SlotClick(Slot s)
@@ -36,6 +38,11 @@ public class InventoryManager : MonoBehaviour {
             if(firstSlot.IsEmpty())
             {
                 firstSlot = null;
+                
+            }
+            else
+            {
+               
             }
            
         }
@@ -115,6 +122,7 @@ public class InventoryManager : MonoBehaviour {
 
                 firstSlot = null;
                 secondSlot = null;
+                
             }
             //Moving the crafted item from the finished slot to the empty inventory slot
             //Can go in any inventory slot because it is a potion
@@ -128,7 +136,7 @@ public class InventoryManager : MonoBehaviour {
                 firstSlot = null;
                 secondSlot = null;
             }
-            
+            Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
         }
         
 
