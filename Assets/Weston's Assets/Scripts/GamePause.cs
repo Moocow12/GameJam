@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GamePause : MonoBehaviour
 {
-
     public void PauseGame()
     {
+        Time.timeScale = 0;
+
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject obj in objects)
         {
@@ -27,6 +28,8 @@ public class GamePause : MonoBehaviour
 
     public void ResumeGame()
     {
+        Time.timeScale = 1;
+
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject obj in objects)
         {
