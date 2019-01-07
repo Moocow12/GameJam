@@ -18,6 +18,7 @@ public class GamePause : MonoBehaviour
             }
         }
         GameObject spawner = GameObject.Find("EnemySpawner");
+        Debug.Log(spawner);
         if(spawner != null)
         {
             spawner.GetComponent<EndlessSpawner>().enabled = false;
