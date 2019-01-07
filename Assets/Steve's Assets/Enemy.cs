@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour {
     public float moveSpeed = 10f;
     public int damage = 5;
     public bool isFlying = false;
+    public int[] dropTable = new int[11];
+    public ItemList itemList;
 
     protected Rigidbody2D rbody;
 
@@ -116,6 +118,7 @@ public class Enemy : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
+        Instantiate(itemList.itemList[RandomItem()], new Vector3(transform.position.x, -2f), transform.rotation);
         Destroy(this.gameObject);       // remove this game object from the scene
     }
 
@@ -141,4 +144,27 @@ public class Enemy : MonoBehaviour {
             StartCoroutine(Die());
         }
     }
+
+    private int RandomItem()
+    {
+        int range = 0;
+        for (int i = 0; i < dropTable.Length; i++)
+        {
+            range += dropTable[i];
+        }
+
+        int randomValue = Random.Range(0, range);
+        int top = 0;
+
+        for (int i = 0; i < dropTable.Length; i++)
+        {
+            top += dropTable[i];
+            if (randomValue < top)
+            {
+                return i;
+            }
+        }
+        return dropTable.Length - 1;
+    }
+
 }
