@@ -59,10 +59,10 @@ public class Structure : MonoBehaviour {
     {
 
         wall.Peek().SetHealth(wall.Peek().GetHealth() - 1);
-        print("Top block health: " + wall.Peek().GetHealth());
+        //print("Top block health: " + wall.Peek().GetHealth());
         if (wall.Peek().GetHealth() <= 0 && wall.Count > 0)
         {
-            print("Top block destroyed");
+            //print("Top block destroyed");
             currentTop.y -= .56f;
             Destroy(wall.Pop().gameObject);
             if (wall.Count == 0)
