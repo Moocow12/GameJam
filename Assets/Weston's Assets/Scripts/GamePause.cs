@@ -19,7 +19,7 @@ public class GamePause : MonoBehaviour
         GameObject spawner = GameObject.Find("EnemySpawner");
         if(spawner != null)
         {
-            spawner.GetComponent<Spawner>().enabled = false;
+            spawner.GetComponent<EndlessSpawner>().enabled = false;
         }
      
     }
@@ -39,7 +39,7 @@ public class GamePause : MonoBehaviour
         GameObject spawner = GameObject.Find("EnemySpawner");
         if (spawner != null)
         {
-            spawner.GetComponent<Spawner>().enabled = true;
+            spawner.GetComponent<EndlessSpawner>().enabled = true;
         }
     }
 }
