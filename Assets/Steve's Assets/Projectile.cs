@@ -13,8 +13,10 @@ public class Projectile : MonoBehaviour {
 
     protected Vector2 collisionPoint;
     protected GameObject collision;
-	// Use this for initialization
-	void Start () {
+
+    protected AudioClip soundToPlayOnImpact;
+    // Use this for initialization
+    void Start () {
         lifeTimeCD = lifeTime;
 	}
 	
@@ -28,15 +30,32 @@ public class Projectile : MonoBehaviour {
 
     protected void Break()
     {
-        breakBehaviour.Break(collisionPoint, collision);
-        Destroy(this.gameObject);
+        AudioSource audio = GameObject.Find("PotionBreakAudio").GetComponent<AudioSource>();
+        if(audio != null)
+        {
+            Debug.Log("playingClip");
+            audio.clip = soundToPlayOnImpact;
+            audio.Play();
+        }
+        else
+        {
+            Debug.Log("Please add the Prefab 'PotionBreakAudio' to the game Scene");
+        }
+        if(breakBehaviour != null)
+        {
+            breakBehaviour.Break(collisionPoint, collision);
+        }
+       
+        Destroy(gameObject);
     }
 
     protected void Countdown()
     {
+        
         lifeTimeCD -= Time.deltaTime;       // countdown lifeTimeCD each frame
         if (lifeTimeCD <= 0)        // if the lifeTime has run out...
         {
+
             Break();        // the potion breaks
         }
     }
@@ -44,6 +63,7 @@ public class Projectile : MonoBehaviour {
     public void Initialize(Item item)
     {
         this.damage = item.damage;
+        soundToPlayOnImpact = item.breakAudioClip;
         gameObject.GetComponentInChildren<SpriteRenderer>().sprite = item.inventoryIcon;
         this.breakBehaviour = item.breakBehaviour;
     }

@@ -23,7 +23,7 @@ public class Item : ScriptableObject {
     public Sprite inventoryIcon;
 
     public ItemType itemType;
-
+    public AudioClip breakAudioClip;
     public virtual bool Use()
     {
         return false;

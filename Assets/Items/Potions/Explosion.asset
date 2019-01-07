@@ -18,4 +18,5 @@ MonoBehaviour:
   stackSize: 10
   inventoryIcon: {fileID: 21300032, guid: 778b669c826ff2d408f2891d3670c772, type: 3}
   itemType: 1
+  breakAudioClip: {fileID: 8300000, guid: d1f56e558db39af45bd19812e798f05e, type: 3}
   note: 0
