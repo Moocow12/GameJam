@@ -5,11 +5,11 @@ using UnityEngine;
 public class Structure : MonoBehaviour {
 
     public int initialHeight = 6;
-    public GameObject wallBlockPrefab;
+    public WallBlock wallBlockPrefab;
     
-    private int health = 2;
+    //private int health = 2;
     private Vector2 currentTop;
-    private Stack<GameObject> wall = new Stack<GameObject>();
+    private Stack<WallBlock> wall = new Stack<WallBlock>();
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +17,7 @@ public class Structure : MonoBehaviour {
         currentTop = this.transform.position;
 		for (int i = 0; i < initialHeight; i ++)
         {
-            wall.Push(wallBlockPrefab);
-            Instantiate(wall.Peek(), currentTop, RandomRotation(), this.gameObject.transform);
+            wall.Push(Instantiate(wallBlockPrefab, currentTop, RandomRotation(), this.gameObject.transform));
             currentTop.y += .56f;
         }
 	}
@@ -45,14 +44,24 @@ public class Structure : MonoBehaviour {
         return new Quaternion(0, 0, rotation, 0);
     }
 
+    public void AddBlock()
+    {
+        wall.Peek().SetHealth(2);
+        wall.Push(Instantiate(wallBlockPrefab, currentTop, RandomRotation(), this.gameObject.transform));
+        currentTop.y += .56f;
+    }
+
     public void TakeDamage()
     {
-        health -= 1;
-        if (health <= 0 && wall.Count > 0)
+        wall.Peek().SetHealth(wall.Peek().GetHealth() - 1);
+        if (wall.Peek().GetHealth() <= 0 && wall.Count > 0)
         {
-            health = 2;
-            Destroy(wall.Peek());
-            wall.Pop();
+            currentTop.y -= .56f;
+            Destroy(wall.Pop());
+        }
+        else
+        {
+            wall.Peek().gameObject.GetComponent<SpriteRenderer>().color = new Color(.5f, .5f, .5f);
         }
     }
 }
