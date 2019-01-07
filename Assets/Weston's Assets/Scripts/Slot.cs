@@ -12,7 +12,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
 
     public Image _icon;
     public TextMeshProUGUI _text;
-
+    public Sprite defaultIcon;
     Item itemTypeTester = null;
 
     Inventory inventoryParent;
@@ -129,7 +129,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
             }
             else
             {
-                _icon.sprite = null;
+                _icon.sprite = defaultIcon;
             }
         }
     }

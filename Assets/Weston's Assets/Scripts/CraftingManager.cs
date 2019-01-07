@@ -29,54 +29,58 @@ public class CraftingManager : MonoBehaviour {
     /// </summary>
     public void CheckForRecipe()
     {
-        foreach(Recipe recipe in recipes)
+        if(_inv.enabled)
         {
-            found1 = false;
-            found2 = false;
-            found3 = false;
-            foreach (Slot s in _inv.slots)
+            foreach (Recipe recipe in recipes)
             {
-                if(s.IsEmpty())
+                found1 = false;
+                found2 = false;
+                found3 = false;
+                foreach (Slot s in _inv.slots)
                 {
-                    s.items = new List<Item>();
+                    if (s.IsEmpty())
+                    {
+                        s.items = new List<Item>();
+                    }
+                    if (!found1 && recipe.ingredient1 == null && s.IsEmpty())
+                    {
+                        found1 = true;
+                    }
+                    else if (recipe.ingredient1 != null && !found1 && !s.IsEmpty() && recipe.ingredient1.name == s.items[0].name)
+                    {
+                        found1 = true;
+                    }
+                    else if (!found2 && recipe.ingredient2 == null && s.IsEmpty())
+                    {
+                        found2 = true;
+                    }
+                    else if (recipe.ingredient2 != null && !found2 && !s.IsEmpty() && recipe.ingredient2.name == s.items[0].name)
+                    {
+                        found2 = true;
+                    }
+
+                    else if (!found3 && recipe.ingredient3 == null && s.IsEmpty())
+                    {
+                        found3 = true;
+                    }
+                    else if (recipe.ingredient3 != null && !found3 && !s.IsEmpty() && recipe.ingredient3.name == s.items[0].name)
+                    {
+                        found3 = true;
+                    }
                 }
-                if(!found1  && recipe.ingredient1 == null && s.IsEmpty())
+                if (found1 && found2 && found3)
                 {
-                    found1 = true;
+                    UpdateFinishedItem(recipe.producedItem);
+                    return;
                 }
-                else if(recipe.ingredient1 != null && !found1 && !s.IsEmpty() && recipe.ingredient1.name == s.items[0].name)
+                else
                 {
-                    found1 = true;
-                }
-                else if (!found2 && recipe.ingredient2 == null && s.IsEmpty())
-                {
-                    found2 = true;
-                }
-                else if (recipe.ingredient2 != null && !found2 && !s.IsEmpty() && recipe.ingredient2.name == s.items[0].name)
-                {
-                    found2 = true;
+                    ClearFinishedSlot();
                 }
 
-                else if (!found3 && recipe.ingredient3 == null && s.IsEmpty())
-                {
-                    found3 = true;
-                }
-                else if (recipe.ingredient3 != null && !found3 && !s.IsEmpty() && recipe.ingredient3.name == s.items[0].name)
-                {
-                    found3 = true;
-                }
             }
-            if (found1 && found2 && found3)
-            {
-                UpdateFinishedItem(recipe.producedItem);
-                return;
-            }
-            else
-            {
-                ClearFinishedSlot();
-            }
-
         }
+        
         
     }
 
