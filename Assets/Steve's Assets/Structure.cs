@@ -46,12 +46,17 @@ public class Structure : MonoBehaviour {
 
     public void AddBlock()
     {
-        if (wall.Count == 0)
+        if (wall.Count <= 0)
         {
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            wall.Push(Instantiate(wallBlockPrefab, currentTop, RandomRotation(), this.gameObject.transform));
         }
-        wall.Peek().SetHealth(2);
-        wall.Push(Instantiate(wallBlockPrefab, currentTop, RandomRotation(), this.gameObject.transform));
+        else
+        {
+            wall.Peek().SetHealth(2);
+            wall.Push(Instantiate(wallBlockPrefab, currentTop, RandomRotation(), this.gameObject.transform));
+        }
+        
         currentTop.y += .56f;
     }
 
