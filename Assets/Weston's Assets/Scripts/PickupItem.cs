@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using CCS;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ using UnityEngine;
 public class PickupItem : MonoBehaviour {
 
     InventoryManager manager;
-    public Item item;
+    //public Item item;
+    public CCSBaseItem item;
 
 	// Use this for initialization
 	void Start () {
@@ -43,28 +45,31 @@ public class PickupItem : MonoBehaviour {
 
     public void AddItem()
     {
-        switch (item.itemType)
+        //switch (item.itemType)
+        //{
+        //    case ItemType.Offensive:
+        //        if (manager.AddItem(item, InventoryType.OffensivePotion))
+        //        {
+        //            //destroys the item if it is successfully added.
+        //            Destroy(gameObject);
+        //        }
+        //        return;
+        //    case ItemType.Defensive:
+        //        if (manager.AddItem(item, InventoryType.DefensivePotion))
+        //        {
+        //            //destroys the item if it is successfully added.
+        //            Destroy(gameObject);
+        //        }
+        //        return;
+        //}
+        //if (manager.AddItem(item, InventoryType.CraftingMaterials))
+        //{
+        //    //destroys the item if it is successfully added.
+        //    Destroy(gameObject);
+        //}
+        if(CCSInventoryManager.Instance.TryPickupDefault(item))
         {
-            case ItemType.Offensive:
-                if (manager.AddItem(item, InventoryType.OffensivePotion))
-                {
-                    //destroys the item if it is successfully added.
-                    Destroy(gameObject);
-                }
-                return;
-            case ItemType.Defensive:
-                if (manager.AddItem(item, InventoryType.DefensivePotion))
-                {
-                    //destroys the item if it is successfully added.
-                    Destroy(gameObject);
-                }
-                return;
-        }
-        if (manager.AddItem(item, InventoryType.CraftingMaterials))
-        {
-            //destroys the item if it is successfully added.
             Destroy(gameObject);
         }
-
     }
 }

@@ -128,7 +128,7 @@ public class InventoryManager : MonoBehaviour {
             //Can go in any inventory slot because it is a potion
             else if(secondSlot.gameObject.name != "FinishedItem" && secondSlot.SlotType() != InventoryType.Crafter && !firstSlot.IsEmpty()) 
             {
-                FindObjectOfType<CraftingManager>().TakingFinishedItem();
+                //FindObjectOfType<CraftingManager>().TakingFinishedItem();
                 SwitchSlots();
             }
             else

@@ -5,6 +5,21 @@ using UnityEngine;
 
 public class Launcher : MonoBehaviour {
 
+    public static Launcher Instance;
+
+    public void Singleton()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else if(Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     public GameObject potionPrefab;
     public Slider powerBar;
     public GameObject trajectoryDotPrefab;
@@ -19,8 +34,8 @@ public class Launcher : MonoBehaviour {
     List<GameObject> dots = new List<GameObject>();
 
 	// Use this for initialization
-	void Start () {
-        
+	void Awake  () {
+        Singleton();
     }
 	
 	// Update is called once per frame
