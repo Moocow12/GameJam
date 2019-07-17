@@ -14,6 +14,7 @@ public class FlyingDodgerEnemy : Enemy {
 	void Start ()
     {
         rbody = this.GetComponent<Rigidbody2D>();
+        constraints = rbody.constraints;
         dodgeIntervalCD = dodgeInterval;
         if (isFlying == true)
         {
@@ -50,9 +51,9 @@ public class FlyingDodgerEnemy : Enemy {
         if (freezeDuration > 0)
         {
             freezeDuration -= Time.deltaTime;
-            rbody.constraints = RigidbodyConstraints2D.FreezePosition;
+            rbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        else if (freezeDuration <= 0)
+        else if (freezeDuration <= 0 && rbody.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             rbody.constraints = constraints;
         }

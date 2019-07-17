@@ -43,9 +43,9 @@ public class Enemy : MonoBehaviour {
         if (freezeDuration > 0)
         {
             freezeDuration -= Time.deltaTime;
-            rbody.constraints = RigidbodyConstraints2D.FreezePosition;
+            rbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        else if (freezeDuration <= 0)
+        else if (freezeDuration <= 0 && rbody.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             rbody.constraints = constraints;
         }

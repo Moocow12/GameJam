@@ -12,6 +12,7 @@ public class JumperEnemy : Enemy {
 	// Use this for initialization
 	void Start () {
         rbody = this.GetComponent<Rigidbody2D>();
+        constraints = rbody.constraints;
         jumpRateCD = jumpRate;
 	}
 	
@@ -37,7 +38,7 @@ public class JumperEnemy : Enemy {
             freezeDuration -= Time.deltaTime;
             rbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        else if (freezeDuration <= 0)
+        else if (freezeDuration <= 0 && rbody.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             rbody.constraints = constraints;
         }

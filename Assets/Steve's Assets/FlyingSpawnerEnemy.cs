@@ -13,6 +13,7 @@ public class FlyingSpawnerEnemy : Enemy {
 	void Start () {
         spawnIntervalCD = spawnInterval;
         rbody = this.GetComponent<Rigidbody2D>();
+        constraints = rbody.constraints;
         if (isFlying == true)
         {
             this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y + 1);
@@ -40,9 +41,9 @@ public class FlyingSpawnerEnemy : Enemy {
         if (freezeDuration > 0)
         {
             freezeDuration -= Time.deltaTime;
-            rbody.constraints = RigidbodyConstraints2D.FreezePosition;
+            rbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        else if (freezeDuration <= 0)
+        else if (freezeDuration <= 0 && rbody.constraints == RigidbodyConstraints2D.FreezeAll)
         {
             rbody.constraints = constraints;
         }
